@@ -29,7 +29,10 @@ All notable changes to this project will be documented in this file.
 
 
 ## 0.9.1 - 2016-07-28
-- TODO @henkelr
+- adapted to Neo4J 3.01
+- JSON API for MaSyMoS Core
+- insert and delete a model (update via delete/insert)
+- rank aggregation for output ranking
 
 
 
