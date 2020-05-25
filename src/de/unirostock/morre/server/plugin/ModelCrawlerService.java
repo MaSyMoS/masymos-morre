@@ -17,8 +17,7 @@ import org.kohsuke.MetaInfServices;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.server.plugins.Description;
 import org.neo4j.server.plugins.ServerPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -37,7 +36,7 @@ import de.unirostock.sems.masymos.database.ModelLookup;
 public class ModelCrawlerService extends ServerPlugin
 {
 	
-	final static Logger logger = LoggerFactory.getLogger(ModelCrawlerService.class);
+	final static Logger logger = Logger.getLogger(ModelCrawlerService.class);
 
 	
     @POST

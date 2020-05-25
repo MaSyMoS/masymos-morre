@@ -17,8 +17,7 @@ import org.kohsuke.MetaInfServices;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.server.plugins.Description;
 import org.neo4j.server.plugins.ServerPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -40,7 +39,7 @@ import de.unirostock.sems.masymos.util.ModelDataHolder;
 public class ModelUpdateService extends ServerPlugin
 {
 
-	final static Logger logger = LoggerFactory.getLogger(ModelUpdateService.class);
+	final static Logger logger = Logger.getLogger(ModelUpdateService.class);
 	
     @POST
     @Produces( MediaType.APPLICATION_JSON )

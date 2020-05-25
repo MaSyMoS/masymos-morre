@@ -16,8 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -59,7 +58,7 @@ import de.unirostock.sems.masymos.util.ResultSetUtil;
 @Path("/query")
 public class Query{
 	
-	final static Logger logger = LoggerFactory.getLogger(Query.class);
+	final static Logger logger = Logger.getLogger(Query.class);
 
     @POST
     @Produces( MediaType.APPLICATION_JSON )
