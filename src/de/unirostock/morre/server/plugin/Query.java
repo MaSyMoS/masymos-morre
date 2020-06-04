@@ -58,7 +58,7 @@ import de.unirostock.sems.masymos.util.ResultSetUtil;
 @Path("/query")
 public class Query{
 	
-	final static Logger logger = Logger.getLogger(Query.class);
+	static final Logger logger = Logger.getLogger(Query.class);
 
     @POST
     @Produces( MediaType.APPLICATION_JSON )

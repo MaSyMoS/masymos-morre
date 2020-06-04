@@ -39,7 +39,7 @@ import de.unirostock.sems.masymos.util.ModelDataHolder;
 public class ModelUpdateService extends ServerPlugin
 {
 
-	final static Logger logger = Logger.getLogger(ModelUpdateService.class);
+	static final Logger logger = Logger.getLogger(ModelUpdateService.class);
 	
     @POST
     @Produces( MediaType.APPLICATION_JSON )

@@ -36,7 +36,7 @@ import de.unirostock.sems.masymos.database.ModelLookup;
 public class ModelCrawlerService extends ServerPlugin
 {
 	
-	final static Logger logger = Logger.getLogger(ModelCrawlerService.class);
+	static final Logger logger = Logger.getLogger(ModelCrawlerService.class);
 
 	
     @POST
