@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Removed
+
+
+
+
+## 1.0.2 - 2020-06-19
+
+### Added
 - added eclipse preferences and project meta-data
 - added CHANGELOG.md
 
@@ -18,12 +29,7 @@ All notable changes to this project will be documented in this file.
     - correct order of `static final`
     - force code and outcome to UTF-8 in pom of all projects
     - fix encoding and line breaks of all files
-
-### Removed
-
-
-
-
+- [rework documentation](https://github.com/MaSyMoS/masymos-core/issues/7)
 
 
 ## 1.0.1 - 2019-12-06
