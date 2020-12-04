@@ -123,16 +123,20 @@ public class ModelUpdateService extends ServerPlugin
     	String fileId = null;
     	URL url = null;
     	String modelType = null;
+    	boolean enforceUniqueFileId = false;
     	try {
     	   	fileId = parameterMap.get("fileId");
         	url = new URL(parameterMap.get("url"));
         	modelType = parameterMap.get("modelType");
-    		uID = ModelInserter.addModel(fileId, url, modelType);
+        	enforceUniqueFileId = Boolean.parseBoolean(parameterMap.getOrDefault("enforceUniqueFileId", "false").trim().toLowerCase());
+    		uID = ModelInserter.addModel(fileId, url, modelType, enforceUniqueFileId);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			String[] s = {"Exception",e.getMessage()};			
-			
-            return gson.toJson(s); 
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");
+						
+            return gson.toJson(exceptionMap); 
 		}
    		HashMap<String,String> resultMap = new HashMap<String,String>();
    		resultMap.put("fileId", fileId);
