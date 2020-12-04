@@ -155,7 +155,7 @@ public class ModelUpdateService extends ServerPlugin
     {
 		//ManagerUtil.initManager(graphDbSevice); 
 		//String s = "Retrieve models matching the provided keywords. The query is expanded to all indices.";
-		String[] s = {"'fileId':'($id)', 'url':'($PATH)', 'modelType':(SBML|CELLML|SEDML)}"};
+		String[] s = {"'fileId':'($id)', 'url':'($PATH)', 'modelType':'(SBML|CELLML|SEDML)', 'enforceUniqueFileId':'(true|false) [optional]'"};
 		Gson gson = new Gson();
 		return gson.toJson(s);
     }
@@ -179,8 +179,10 @@ public class ModelUpdateService extends ServerPlugin
     		parameterMap = gson.fromJson(jsonMap, typeOfT);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			String[] s = {"Exception",e.getMessage()};			
-            return gson.toJson(s); 
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");	
+            return gson.toJson(exceptionMap); 
 		}
     	
     	Long uId = Long.MIN_VALUE;
@@ -193,8 +195,10 @@ public class ModelUpdateService extends ServerPlugin
     		versionId = parameterMap.get("versionId");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			String[] s = {"Exception",e.getMessage()};			
-            return gson.toJson(s); 
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");		
+            return gson.toJson(exceptionMap); 
 		}
     	
     	Map<String, String> res = null;
@@ -214,6 +218,64 @@ public class ModelUpdateService extends ServerPlugin
 		//ManagerUtil.initManager(graphDbSevice); 
 		//String s = "Removes models matching the provided keywords. The query is expanded to all indices.";
 		String[] s = {"'fileId':'($id) [optional]', 'versionId':'($id) [optional]', 'uID':'($id)'"};
+		Gson gson = new Gson();
+		return gson.toJson(s);
+    }
+
+	
+    @POST
+    @Produces( MediaType.APPLICATION_JSON )
+    @Consumes( MediaType.APPLICATION_JSON ) 
+    @Path( "/delete_model_by_fileid" )
+    public String deleteModelByFileId( 	@Context GraphDatabaseService graphDbSevice,
+    										String jsonMap)
+    {
+    	//"'fileId':'($id)', 'versionId':'($id) [optional], 'uID':'($id)'"
+    	ManagerUtil.initManager(graphDbSevice); 	
+    	
+    	Gson gson = new Gson();
+    	
+       	Map<String, String> parameterMap = new HashMap<String, String>();
+    	java.lang.reflect.Type typeOfT = new TypeToken<Map<String, String>>(){}.getType();
+
+    	try {
+    		parameterMap = gson.fromJson(jsonMap, typeOfT);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");	
+            return gson.toJson(exceptionMap); 
+		}
+    	
+
+    	String fileId = null;
+
+    
+    	try {	
+    		fileId = parameterMap.get("fileId").trim();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");		
+            return gson.toJson(exceptionMap); 
+		}
+    	
+    	Map<String, String> res = ModelDeleter.deleteDocumentByFileID(fileId);
+
+    	return gson.toJson(res);
+     	
+    }		
+	
+	
+	@GET
+    @Produces( MediaType.APPLICATION_JSON ) 
+	@Consumes(MediaType.TEXT_PLAIN) 
+    @Path ( "/delete_model_by_fileid" )
+    public String deleteModelByFileId(@Context GraphDatabaseService graphDbSevice)
+    {
+		String[] s = {"'fileId':'($id)'"};
 		Gson gson = new Gson();
 		return gson.toJson(s);
     }
