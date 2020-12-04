@@ -115,8 +115,10 @@ public class ModelUpdateService extends ServerPlugin
     		parameterMap = gson.fromJson(jsonMap, typeOfT);	
 		} catch (JsonSyntaxException e) {
 			logger.error(e.getMessage());
-			String[] s = {"Exception","wrong parameters provided!","Stacktrace", e.getMessage()};
-    		return gson.toJson(s);
+			HashMap<String,String> exceptionMap = new HashMap<String,String>();
+			exceptionMap.put("message",e.getMessage());
+			exceptionMap.put("ok", "false");
+    		return gson.toJson(exceptionMap);
 		}    	
 
     	Long uID = Long.MIN_VALUE;
