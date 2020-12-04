@@ -4,7 +4,7 @@
 
 	<groupId>de.unirostock.sems.masymos</groupId>
 	<artifactId>masymos-morre</artifactId>
-	<version>1.0.2</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
 	<name>server.plugin</name>
@@ -111,7 +111,7 @@
 		<dependency>
 			<groupId>de.unirostock.sems.masymos</groupId>
 			<artifactId>masymos-core</artifactId>
-			<version>1.0.2</version>
+			<version>1.1.0</version>
 		</dependency>
 		
 		<!-- Just for auto generating the services file in META-INF -->
